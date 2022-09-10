@@ -4,10 +4,10 @@ class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     balance = db.Column(db.Float, nullable=False)
     transactions = db.relationship('Transaction', backref='account')
-    cutomer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
     
     def __repr__(self):
-        return f'<Account id={self.id}>'
+        return f'<Account id={self.id} balance={self.balance} transactions={self.transactions} customer_id={self.customer_id}>'
     
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,4 +24,4 @@ class Transaction(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
 
     def __repr__(self):
-        return f'<Transaction to acc. {self.account_id} {self.value}€; id={self.id}>'
+        return f'<Transaction to acc_id={self.account_id}, with value={self.value}EUR; id={self.id}>'

@@ -40,11 +40,10 @@ def create_account():
 
 @main.route('/user_info', methods=['GET'])
 def user_info():
-    
     args = request.args
     
     if 'customerID' not in args:
-        return 'Parameters fields are incorrect!'    
+        return 'Parameters fields are incorrect'    
             
     customer = Customer.query.get(args['customerID'])
     
